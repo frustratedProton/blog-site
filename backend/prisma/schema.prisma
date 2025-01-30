@@ -26,7 +26,8 @@ enum PostStatus {
 model User {
     id Int @id @default(autoincrement())
     email String @unique
-    name String
+    username String
+    password String
     role Role @default(USER)
     posts Post[]
     comments  Comment[]
@@ -58,4 +59,3 @@ model Comment {
     userId Int?
     user User? @relation(fields: [userId], references: [id])
 }
-
