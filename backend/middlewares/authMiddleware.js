@@ -1,9 +1,15 @@
 // prototype auth middleware
 // todo: change it
 
+import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 
-const jswtSecret = process.env.JWT_SECRET;
+dotenv.config();
+
+const jwtSecret = process.env.JWT_SECRET;
+if (!jwtSecret) {
+    throw new Error('JWT_SECRET environment variable is not defined');
+}
 
 export const authenticateUser = (req, res, next) => {
     const token = req.header('Authorization')?.replace('Bearer ', '');
@@ -16,9 +22,11 @@ export const authenticateUser = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, jwtSecret);
-        req.user = decoded; // Assuming the JWT contains the user ID as 'id (it doesnt rn)
+        req.user = decoded;
         next();
     } catch (error) {
-        return res.status(401).json({ message: 'Token is not valid' });
+        return res
+            .status(401)
+            .json({ message: 'Token is not valid', error: error.message });
     }
 };

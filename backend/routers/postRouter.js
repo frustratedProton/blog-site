@@ -1,16 +1,18 @@
 import express from 'express';
+import { createBlogPostValidation } from '../middlewares/validationMiddleware.js';
+import { createBlogPost, getAllBlogPosts } from '../controllers/postController.js';
 
-const authRouter = express.Router();
+const blogPostRouter = express.Router();
 
 //    - *Create Post:* POST /api/posts
-authRouter.post('/', createBlogPost);
+// blogPostRouter.post('/', createBlogPostValidation, createBlogPost);
 //    - *Read All Posts:* GET /api/posts
-authRouter.get('/', getAllBlogPosts);
+// blogPostRouter.get('/', getAllBlogPosts);
 //    - *Read Single Post:* GET /api/posts/:id
-authRouter.get('/:id', getBlogPostById);
-//    - *Update Post:* PUT /api/posts/:id
-authRouter.post('/:id', updateBlogPost);
-//    - *Delete Post:* DELETE /api/posts/:id
-authRouter.delete('/:id', deleteBlogPost);
+// blogPostRouter.get('/:id', getBlogPostById);
+// //    - *Update Post:* PUT /api/posts/:id
+// blogPostRouter.post('/:id', updateBlogPost);
+// //    - *Delete Post:* DELETE /api/posts/:id
+// blogPostRouter.delete('/:id', deleteBlogPost);
 
-export default authRouter;
+export default blogPostRouter;
