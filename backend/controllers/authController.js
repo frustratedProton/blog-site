@@ -84,5 +84,5 @@ export const loginUser = asyncHandler(async (req, res, next) => {
         }
     );
 
-    res.status(200).json({ token });
+    res.status(200).json({ token, userId: user.id });
 });

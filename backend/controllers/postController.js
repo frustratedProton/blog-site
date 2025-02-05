@@ -51,7 +51,121 @@ export const getAllBlogPosts = asyncHandler(async (req, res, next) => {
         where: {
             authorId,
         },
+        include: {
+            author: {
+                select: {
+                    username: true,
+                },
+            },
+        },
     });
 
     res.status(200).json(allAuthorPost);
+});
+
+// GET post by id
+export const getBlogPostById = asyncHandler(async (req, res, next) => {
+    const blogPostId = parseInt(req.params.id);
+
+    const blogPost = await prisma.post.findUnique({
+        where: {
+            id: blogPostId,
+        },
+        include: {
+            author: {
+                select: {
+                    username: true,
+                },
+            },
+        },
+    });
+
+    if (!blogPost) {
+        const error = new Error('Blog post not found');
+        error.status = 404;
+        return next(error);
+    }
+
+    res.status(200).json(blogPost);
+});
+
+// update blogpost by id
+export const updateBlogPost = asyncHandler(async (req, res, next) => {
+    const blogPostId = parseInt(req.params.id);
+    const { title, content } = req.body;
+
+    const blogPost = await prisma.post.findUnique({
+        where: {
+            id: blogPostId,
+        },
+        include: {
+            author: true,
+        },
+    });
+
+    if (!blogPost) {
+        const error = new Error('Blog post not found');
+        error.status = 404;
+        return next(error);
+    }
+
+    // Check if the logged-in user is the author of the post
+    if (blogPost.author.id !== req.user.id) {
+        const error = new Error('You are not authorized to update this post');
+        error.status = 403;
+        return next(error);
+    }
+
+    if (blogPost.author.id !== req.user.id) {
+        const error = new Error('You are not authorized to update this post');
+        error.status = 403;
+        return next(error);
+    }
+
+    // Update the post
+    const updatedPost = await prisma.post.update({
+        where: {
+            id: blogPostId,
+        },
+        data: {
+            title: title || blogPost.title, // Only update if a new value is provided
+            content: content || blogPost.content,
+        },
+    });
+
+    res.status(200).json(updatedPost);
+});
+
+// DELETE a blog post
+export const deleteBlogPost = asyncHandler(async (req, res, next) => {
+    const blogPostId = parseInt(req.params.id);
+
+    const blogPost = await prisma.post.findUnique({
+        where: {
+            id: blogPostId,
+        },
+        include: {
+            author: true,
+        },
+    });
+
+    if (!blogPost) {
+        const error = new Error('Blog post not found');
+        error.status = 404;
+        return next(error);
+    }
+
+    if (blogPost.author.id !== req.user.id) {
+        const error = new Error('You are not authorized to delete this post');
+        error.status = 403;
+        return next(error);
+    }
+
+    await prisma.post.delete({
+        where: {
+            id: blogPostId,
+        },
+    });
+
+    res.status(200).json({ message: 'Blog post deleted successfully' });
 });
