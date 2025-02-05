@@ -1,6 +1,7 @@
 import express from 'express';
 import blogPostRouter from './postRouter.js';
 import authRouter from './authRouter.js';
+import commentRouter from './commentRouter.js';
 
 const indexRouter = express.Router();
 
@@ -10,5 +11,6 @@ indexRouter.get('/', (req, res) => {
 
 indexRouter.use('/auth', authRouter);
 indexRouter.use('/post', blogPostRouter);
+indexRouter.use('/comments', commentRouter);
 
 export default indexRouter;
