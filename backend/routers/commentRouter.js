@@ -30,4 +30,5 @@ commentRouter.put(
 
 // Delete a specific comment for a specific post
 commentRouter.delete('/:commentId', authenticateUser, deleteComment);
+
 export default commentRouter;

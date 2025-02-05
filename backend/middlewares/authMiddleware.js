@@ -1,6 +1,3 @@
-// prototype auth middleware
-// todo: change it
-
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 

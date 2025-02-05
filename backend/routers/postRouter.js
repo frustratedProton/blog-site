@@ -6,8 +6,10 @@ import {
     getAllBlogPosts,
     getBlogPostById,
     updateBlogPost,
+    updatePostStatus,
 } from '../controllers/postController.js';
 import { authenticateUser } from '../middlewares/authMiddleware.js';
+import { isAuthor } from '../middlewares/isAuthorMiddleware.js';
 
 const blogPostRouter = express.Router();
 
@@ -16,6 +18,7 @@ blogPostRouter.post(
     '/',
     authenticateUser,
     createBlogPostValidation,
+    isAuthor,
     createBlogPost
 );
 
@@ -30,9 +33,11 @@ blogPostRouter.get(
     getBlogPostById
 );
 //    - *Update Post:* PUT /api/posts/:id
-blogPostRouter.post('/:id', authenticateUser, updateBlogPost);
+blogPostRouter.put('/:id', authenticateUser, isAuthor, updateBlogPost);
+
+blogPostRouter.put('/status', authenticateUser, isAuthor, updatePostStatus);
 
 //    - *Delete Post:* DELETE /api/posts/:id
-blogPostRouter.delete('/:id', deleteBlogPost);
+blogPostRouter.delete('/:id', authenticateUser, isAuthor, deleteBlogPost);
 
 export default blogPostRouter;

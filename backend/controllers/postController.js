@@ -169,3 +169,19 @@ export const deleteBlogPost = asyncHandler(async (req, res, next) => {
 
     res.status(200).json({ message: 'Blog post deleted successfully' });
 });
+
+export const updatePostStatus = asyncHandler(async (req, res, next) => {
+    const postId = parseInt(req.params.id);
+    const { status } = req.body;
+
+    if (status !== 'PUBLISHED') {
+        return next(new Error('Invalid status update'));
+    }
+
+    const post = await prisma.post.update({
+        where: { id: postId },
+        data: { status },
+    });
+
+    res.status(200).json({ message: 'Post published successfully', post });
+});
