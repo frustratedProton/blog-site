@@ -19,8 +19,6 @@ export const userValidation = [
 export const validateComment = [
     body('content').isString().notEmpty().withMessage('Content is required'),
 
-    body('postId').notEmpty().withMessage('Post ID must be an integer'),
-
     body('email').isEmail().optional().withMessage('Invalid email format'),
 
     body('username')

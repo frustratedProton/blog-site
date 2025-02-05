@@ -15,8 +15,19 @@ export const createComments = asyncHandler(async (req, res, next) => {
         return next(error);
     }
 
-    const { content, postId, email, username } = req.body;
+    const { content, email, username } = req.body;
+    const postId = parseInt(req.params.postId);
     const userId = req.user.id;
+
+    const post = await prisma.post.findUnique({
+        where: { id: postId },
+    });
+
+    if (!post) {
+        const error = new Error('Post not found');
+        error.status = 404;
+        return next(error);
+    }
 
     const comment = await prisma.comment.create({
         data: {
@@ -31,13 +42,22 @@ export const createComments = asyncHandler(async (req, res, next) => {
     res.status(201).json({ message: 'Comment created successfully', comment });
 });
 
-// GET all comments
-export const getAllComments = asyncHandler(async (req, res, next) => {
+// GET all comments for a specific post
+export const getCommentsForPost = asyncHandler(async (req, res, next) => {
+    const postId = parseInt(req.params.postId);
+
+    const post = await prisma.post.findUnique({
+        where: { id: postId },
+    });
+
+    if (!post) {
+        const error = new Error('Post not found');
+        error.status = 404;
+        return next(error);
+    }
+
     const comments = await prisma.comment.findMany({
-        include: {
-            post: true,
-            user: true,
-        },
+        where: { postId },
     });
 
     res.status(200).json(comments);
@@ -45,15 +65,11 @@ export const getAllComments = asyncHandler(async (req, res, next) => {
 
 // GET comment by id
 export const getCommentById = asyncHandler(async (req, res, next) => {
-    const { commentId } = req.params;
+    const commentId = parseInt(req.params.commentId);
 
     const comment = await prisma.comment.findUnique({
         where: {
             id: commentId,
-        },
-        include: {
-            post: true,
-            user: true,
         },
     });
 
@@ -68,7 +84,7 @@ export const getCommentById = asyncHandler(async (req, res, next) => {
 
 // update comment
 export const updateComment = asyncHandler(async (req, res, next) => {
-    const { commentId } = parseInt(req.params);
+    const commentId = parseInt(req.params.commentId);
     const { content, email, username } = req.body;
     const userId = req.user.id;
 
@@ -104,7 +120,7 @@ export const updateComment = asyncHandler(async (req, res, next) => {
 
 // delete comment by id
 export const deleteComment = asyncHandler(async (req, res, next) => {
-    const { commentId } = parseInt(req.params);
+    const commentId = parseInt(req.params.commentId);
 
     const existingComment = await prisma.comment.findUnique({
         where: {
