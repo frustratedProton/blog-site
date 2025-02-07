@@ -1,0 +1,57 @@
+// colors: https://www.realtimecolors.com/blog-post?colors=150406-fcf3f4-d74253-e6ad89-deaf63&fonts=Inter-Inter
+$text: hsl(353, 68%, 5%);
+$background: hsl(353, 60%, 97%);
+$primary: hsl(353, 65%, 55%);
+$secondary: hsl(23, 65%, 72%);
+$accent: hsl(37, 65%, 63%);
+
+// font: "Helvetica Neue", Helvetica, Arial, sans-serif
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../public/fonts/HelveticaNeueMedium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('/fonts/Helvetica.ttf') format('truetype');
+}
+/* Reset margin and padding for all elements */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%; /* 16px base */
+    scroll-behavior: smooth;
+}
+
+/* Set default font and body styles */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: $text;
+    background-color: $background;
+}
+
+/* Remove list and link styles */
+ol,
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Make images responsive */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}

@@ -75,10 +75,10 @@ export const deleteUserProfile = asyncHandler(async (req, res, next) => {
 });
 
 export const updateUserRole = asyncHandler(async (req, res, next) => {
-    const userId = parseInt(req.params.id);
+    const userId = req.user.id;
     const { role } = req.body;
-
-    if (role !== 'AUTHOR' || role !== 'USER') {
+    console.log(role);
+    if (role !== 'AUTHOR' && role !== 'USER') {
         return next(new Error('Invalid role assignment'));
     }
 
