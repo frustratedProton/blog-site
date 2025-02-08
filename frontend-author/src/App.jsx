@@ -1,7 +1,15 @@
+import BlogList from "./components/blogList/BlogList";
+import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
+import Hero from "./components/hero/Hero";
+
 function App() {
     return (
         <>
-            <h1>Hello World</h1>
+            <Header />
+            <Hero />
+            <Footer />
+            <BlogList />
         </>
     );
 }
