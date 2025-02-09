@@ -1,0 +1,9 @@
+$post-grid-gap: 20px;
+$post-grid-min-width: 300px;
+
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($post-grid-min-width, 1fr));
+    gap: $post-grid-gap;
+    margin-top: 20px;
+}
