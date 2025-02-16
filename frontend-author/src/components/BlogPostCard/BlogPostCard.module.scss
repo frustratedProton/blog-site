@@ -2,27 +2,21 @@ $post-card-padding: 20px;
 $post-card-bg-color: #fff;
 $post-card-border-color: #ddd;
 $post-card-shadow-color: rgba(0, 0, 0, 0.1);
-$post-card-hover-translate: -10px;
 
-.post-card {
+.postCard {
+    border: 2px solid green;
     background-color: $post-card-bg-color;
-    border: 1px solid $post-card-border-color;
     border-radius: 8px;
     padding: $post-card-padding;
     box-shadow: 0 4px 8px $post-card-shadow-color;
-    transition: transform 0.3s ease-in-out;
 
-    &:hover {
-        transform: translateY($post-card-hover-translate);
-    }
-
-    .post-title {
+    .postTitle {
         font-size: 1.5rem;
         color: #333;
         margin-bottom: 10px;
     }
 
-    .post-body {
+    .postBody {
         font-size: 1rem;
         color: #555;
     }

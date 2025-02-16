@@ -77,6 +77,7 @@ export const loginUser = asyncHandler(async (req, res, next) => {
             id: user.id,
             email: user.email,
             username: user.username,
+            role: user.role,
         },
         jwtSecret,
         {
@@ -84,5 +85,5 @@ export const loginUser = asyncHandler(async (req, res, next) => {
         }
     );
 
-    res.status(200).json({ token, userId: user.id });
+    res.status(200).json({ token });
 });

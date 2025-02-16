@@ -1,9 +1,43 @@
+@use '../../index.scss';
+
 $post-grid-gap: 20px;
 $post-grid-min-width: 300px;
 
-.post-grid {
+.postGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax($post-grid-min-width, 1fr));
     gap: $post-grid-gap;
-    margin-top: 20px;
+    background-color: index.$secondary;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding-left: 1.75rem;
+    padding-right: 1.25rem;
+    z-index: 1;
+    border-radius: 1rem;
+
+    z-index: 0;
+    flex: 1;
+    max-width: 90rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3rem 3rem;
+    position: relative;
+
+    .gridContainer {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: $post-grid-gap;
+
+        grid-column-gap: 1.25rem;
+        grid-row-gap: 1.25rem;
+        border-radius: 1.25rem;
+        flex-flow: column;
+        grid-template-rows: auto;
+        place-items: start stretch;
+        width: 100%;
+        min-width: 0;
+        height: 100%;
+        padding: 0.75rem;
+        transition-property: transform, background-color;
+    }
 }

@@ -1,11 +1,12 @@
-import './BlogPostCard.module.scss';
+/* eslint-disable react/prop-types */
+import style from './BlogPostCard.module.scss';
 
 const BlogPostCard = ({ post }) => {
     return (
-        <div className="post-card">
-            <h2 className="post-title">{post.title}</h2>
-            <p className="post-body">{post.content}</p>
-            <p className='author-name'>{post.author.username}</p>
+        <div className={style.postCard}>
+            <h2 className={style.postTitle}>{post.title}</h2>
+            <p className={style.postBody}>{post.content}</p>
+            <p className={style.postBody}>Written by - {post.author.username}</p>
         </div>
     );
 };

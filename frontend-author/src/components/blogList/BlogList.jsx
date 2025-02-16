@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import './blogList.module.scss';
+import style from './blogList.module.scss';
 import BlogPostCard from '../BlogPostCard/BlogPostCard';
 
 const BlogList = () => {
@@ -41,15 +41,17 @@ const BlogList = () => {
 
     return (
         <div>
-            <h1>Blog Posts</h1>
             {posts.length === 0 ? (
                 <p>No blog posts available.</p>
             ) : (
-                <div className="post-grid">
-                    {posts.map((post) => (
-                        <BlogPostCard key={post.id} post={post} />
-                    ))}
-                </div>
+                <section className={style.postGrid}>
+                    <h1>Blog Posts</h1>
+                    <div className={style.gridContainer}>
+                        {posts.map((post) => (
+                            <BlogPostCard key={post.id} post={post} />
+                        ))}
+                    </div>
+                </section>
             )}
         </div>
     );
