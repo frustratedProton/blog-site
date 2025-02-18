@@ -4,6 +4,7 @@ import Hero from '../components/hero/Hero';
 import BlogList from '../components/blogList/BlogList';
 import Footer from '../components/footer/Footer';
 import Login from '../components/auth/login/Login';
+import PostDetails from '../components/postdetails/PostDetail';
 
 const AppRouter = () => {
     return (
@@ -20,6 +21,7 @@ const AppRouter = () => {
                     }
                 />
                 <Route path="login" element={<Login />} />
+                <Route path="posts/:id" element={<PostDetails />} />
             </Routes>
             <Footer />
         </>

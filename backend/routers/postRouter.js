@@ -29,7 +29,6 @@ blogPostRouter.get('/', authenticateUser, getAllBlogPosts);
 blogPostRouter.get(
     '/:id',
     authenticateUser,
-    createBlogPostValidation,
     getBlogPostById
 );
 //    - *Update Post:* PUT /api/posts/:id

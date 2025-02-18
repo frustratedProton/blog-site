@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Link } from 'react-router';
 import { useEffect, useState } from 'react';
 import style from './blogList.module.scss';
 import BlogPostCard from '../BlogPostCard/BlogPostCard';
@@ -48,7 +49,9 @@ const BlogList = () => {
                     <h1>Blog Posts</h1>
                     <div className={style.gridContainer}>
                         {posts.map((post) => (
-                            <BlogPostCard key={post.id} post={post} />
+                            <Link to={`/posts/${post.id}`} key={post.id}>
+                                <BlogPostCard key={post.id} post={post} />
+                            </Link>
                         ))}
                     </div>
                 </section>
