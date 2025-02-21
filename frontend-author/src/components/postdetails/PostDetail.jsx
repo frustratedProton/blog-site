@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import style from './PostDetail.module.scss';
+
 const PostDetails = () => {
     const { id } = useParams();
     const [post, setPost] = useState(null);
@@ -33,27 +35,26 @@ const PostDetails = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <article aria-labelledby={`post-title-${post.id}`}>
+        <article
+            aria-labelledby={`post-title-${post.id}`}
+            className="style.hero"
+        >
             <header>
-                <h1 id={`post-title-${post.id}`}>{post.title}</h1>
+                <h1 id={`post-title-${post.id}`} className={style.heroText}>
+                    {post.title}
+                </h1>
+
                 <p>
-                    <strong>Author:</strong> <span>{post.author.username}</span>
-                </p>
-                <p>
-                    <strong>Created At:</strong>
-                    <time dateTime={post.createdAt}>
-                        {new Date(post.createdAt).toLocaleString()}
-                    </time>
-                </p>
-                <p>
-                    <strong>Updated At:</strong>
-                    <time dateTime={post.updatedAt}>
-                        {new Date(post.updatedAt).toLocaleString()}
-                    </time>
+                    <span>By {post.author.username}</span>/
+                    <span>
+                        <time dateTime={post.createdAt}>
+                            {new Date(post.createdAt).toLocaleDateString()}
+                        </time>
+                    </span>
                 </p>
             </header>
 
-            <section aria-labelledby={`post-content-${post.id}`}>
+            <section aria-labelledby={`post-content-${post.id}`} className={style.container}>
                 <h2 id={`post-content-${post.id}`}>Content</h2>
                 <p>{post.content}</p>
             </section>

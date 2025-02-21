@@ -1,0 +1,31 @@
+@use '../../index';
+
+.hero {
+    background-attachment: fixed;
+    z-index: 0;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding-left: 1.75rem;
+    padding-right: 1.25rem;
+}
+
+.heroText {
+    text-transform: uppercase;
+    font-size: 3.25em;
+    padding-top: 10rem;
+    padding-left: 5.75rem;
+    padding-right: 5.75rem;
+    text-align: center;
+}
+
+.container {
+    background-color: index.$secondary;
+    border-radius: 1rem;
+    z-index: 0;
+    max-width: 90rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    position: relative;
+    overflow: hidden;
+}
