@@ -39,7 +39,7 @@ const PostDetails = () => {
             aria-labelledby={`post-title-${post.id}`}
             className="style.hero"
         >
-            <header>
+            <header className={style.headerContainer}>
                 <h1 id={`post-title-${post.id}`} className={style.heroText}>
                     {post.title}
                 </h1>
@@ -53,10 +53,11 @@ const PostDetails = () => {
                     </span>
                 </p>
             </header>
-
-            <section aria-labelledby={`post-content-${post.id}`} className={style.container}>
-                <h2 id={`post-content-${post.id}`}>Content</h2>
-                <p>{post.content}</p>
+            <section
+                aria-labelledby={`post-content-${post.id}`}
+                className={style.container}
+            >
+                <p className={style.postContent}>{post.content}</p>
             </section>
         </article>
     );

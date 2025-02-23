@@ -19,13 +19,52 @@
     text-align: center;
 }
 
+.headerContainer {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+}
+
+header {
+    p {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        font-size: 1.2rem;
+
+        span {
+            text-align: center;
+        }
+    }
+}
+
 .container {
     background-color: index.$secondary;
+
     border-radius: 1rem;
     z-index: 0;
-    max-width: 90rem;
+    margin-top: 1rem;
     margin-left: 1rem;
     margin-right: 1rem;
+    margin-bottom: 1.5rem;
     position: relative;
     overflow: hidden;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1.5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .postContent {
+        text-align: center;
+        padding-bottom: 1rem;
+        margin: 0;
+        line-height: 1.6;
+        font-size: 1.125rem;
+        color: index.$text;
+    }
 }
