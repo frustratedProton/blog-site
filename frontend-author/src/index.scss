@@ -38,6 +38,10 @@ body {
     background-color: $background;
 }
 
+html, body {
+    height: 100%;
+}
+
 /* Remove list and link styles */
 ol,
 ul {

@@ -1,14 +1,17 @@
-import BlogList from './components/blogList/BlogList';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
-import Hero from './components/hero/Hero';
 import AppRouter from './router/Router';
+import style from './app.module.scss';
 
 function App() {
     return (
-        <>
-            <AppRouter />
-        </>
+        <div className={style.appContainer}>
+            <Header />
+            <div className={style.appContent}>
+                <AppRouter />
+            </div>
+            <Footer />
+        </div>
     );
 }
 
