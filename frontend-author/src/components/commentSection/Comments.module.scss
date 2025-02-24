@@ -1,0 +1,42 @@
+@use '../../index';
+
+.commentSection {
+    background-color: index.$secondary;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    z-index: 1;
+
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding-left: 1.75rem;
+    padding-right: 1.25rem;
+
+    h3 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        padding-top: 1rem;
+        color: index.$text;
+    }
+
+    .comment {
+        margin-bottom: 1rem;
+        padding: 1rem;
+        background-color: index.$secondary;
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: column;
+
+        .commentHeader {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: index.$primary;
+        }
+
+        .commentContent {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            color: index.$text;
+        }
+    }
+}

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import style from './PostDetail.module.scss';
+import PostComments from '../commentSection/Comments';
 
 const PostDetails = () => {
     const { id } = useParams();
@@ -59,6 +60,7 @@ const PostDetails = () => {
             >
                 <p className={style.postContent}>{post.content}</p>
             </section>
+            <PostComments />
         </article>
     );
 };
