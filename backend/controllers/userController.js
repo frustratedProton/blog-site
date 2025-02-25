@@ -5,20 +5,10 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export const getUserProfile = asyncHandler(async (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        const error = new Error('Validation failed');
-        error.status = 400;
-        error.errors = errors.array();
-        return next(error);
-    }
-
     const userId = req.user.id;
-    const { username, email } = req.body;
 
-    const user = await prisma.user.update({
+    const user = await prisma.user.findUnique({
         where: { id: userId },
-        data: { username, email },
     });
 
     res.status(200).json({ user });

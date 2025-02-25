@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import style from './Comments.module.scss';
+import AddComments from '../AddComment/AddComment';
 
 const PostComments = () => {
     const { id } = useParams();
@@ -31,12 +32,17 @@ const PostComments = () => {
         fetchComments();
     }, [id]);
 
+    const handleNewComments = (newComment) => {
+        setComments((prevComments) => [newComment, ...prevComments]);
+    };
+
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
 
     return (
         <section className={style.commentSection}>
             <h3>Comments</h3>
+            <AddComments postId={id} onCommentAdded={handleNewComments} />
             {comments.length > 0 ? (
                 comments.map((comment) => (
                     <div key={comment.id} className={style.comment}>
