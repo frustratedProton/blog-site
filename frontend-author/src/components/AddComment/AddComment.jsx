@@ -1,35 +1,12 @@
 /* eslint-disable react/prop-types */
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import style from './AddComment.module.scss';
 
-const AddComments = ({ postId, onCommentAdded }) => {
+const AddComments = ({ postId, onCommentAdded, user }) => {
     const [newComment, setNewComment] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const res = await axios.get(
-                    'http://localhost:3001/api/user/profile',
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
-                console.log(res.data.user)
-                setUser(res.data.user);
-            } catch (error) {
-                console.error(error);
-                setError('Failed to fetch user profile.');
-            }
-        };
-        fetchUser();
-    }, []);
 
     const handleAddComment = async () => {
         if (!newComment.trim()) return;
@@ -61,6 +38,9 @@ const AddComments = ({ postId, onCommentAdded }) => {
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
+    if (!user) {
+        return <div>You must be logged in to comment.</div>;
+    }
 
     return (
         <div className={style.addComment}>
